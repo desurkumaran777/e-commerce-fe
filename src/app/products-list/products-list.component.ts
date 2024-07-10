@@ -20,6 +20,7 @@ export class ProductsListComponent {
   @Output() goToCart = new EventEmitter<any>();
 
   addToShoppingCart(prod: Product) {
+    prod.isAddedToCart = true;
     this.addToCart.emit(prod);
   };
 

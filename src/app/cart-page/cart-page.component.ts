@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../shared/models/product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,8 +10,25 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.css'
 })
-export class CartPageComponent {
+export class CartPageComponent implements OnInit{
+
+  ngOnInit() {
+    this.updateTotal();
+  }
+
   @Input() items: Product[] = [];
-  @Input() totalQty: number = 0;
-  @Input() totalPrice: number = 0;
+
+  totalCount: number = 0;
+
+  totalPrice: number = 0;
+  
+  updateTotal() {
+    this.totalCount = 0;
+    this.totalPrice = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      const item = this.items[i];
+      this.totalCount += item.order_qty;
+      this.totalPrice += (item.order_qty * item.prodPrice);
+    }
+  };
 }

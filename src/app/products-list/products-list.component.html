@@ -12,10 +12,13 @@
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{prod.prodBrand}}</h6>
                         <p class="card-text text-truncate">{{prod.prodDesc}}</p>
                         <p class="card-text">₹ {{prod.prodPrice}}</p>
-                        <div class="row justify-content-between">
-                            <input type="number" class="w-40 mx-2 form-control" [(ngModel)]="prod.order_qty" min="1">
-                            <button type="button" class="w-50 me-2 btn btn-primary" (click)="addToShoppingCart(prod)">Add to
+                        <div class="row justify-content-end">
+                            <!-- <input type="number" class="w-40 mx-2 form-control" [(ngModel)]="prod.order_qty" min="1"> -->
+                            <button *ngIf="!prod.isAddedToCart;" type="button" class="w-50 me-2 btn btn-primary"
+                                (click)="addToShoppingCart(prod)">Add to
                                 Cart</button>
+                            <button *ngIf="prod.isAddedToCart;" type="button"
+                                class="w-50 me-2 btn btn-primary disabled">Added To Cart</button>
                         </div>
                     </div>
                 </div>
