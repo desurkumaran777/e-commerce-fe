@@ -1,0 +1,30 @@
+<div>
+    <div *ngIf="items.length === 0; else showProducts;">
+        There is no products to show.
+    </div>
+
+    <ng-template #showProducts>
+        <div class="row">
+            <div class="w-auto my-2" *ngFor="let prod of items">
+                <div class="card" style="width: 18rem; height: 14rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{prod.prodName}}</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{prod.prodBrand}}</h6>
+                        <p class="card-text text-truncate">{{prod.prodDesc}}</p>
+                        <p class="card-text">₹ {{prod.prodPrice}}</p>
+                        <div class="row justify-content-between">
+                            <input type="number" class="w-40 mx-2 form-control" [(ngModel)]="prod.order_qty" min="1">
+                            <button type="button" class="w-50 me-2 btn btn-primary" (click)="addToShoppingCart(prod)">Add to
+                                Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <div *ngIf="toShowGoToCart" class="position-fixed top-0 end-0">
+        <button type="button" class="m-2 btn btn-secondary" (click)="goToCartPage()">Go to Cart</button>
+    </div>
+
+</div>
