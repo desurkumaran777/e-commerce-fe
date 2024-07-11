@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Product } from '../../shared/models/product';
 
 @Component({
   selector: 'add-product',
@@ -10,6 +11,9 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angula
   styleUrl: './add-product.component.css'
 })
 export class AddProductComponent {
+
+  @Output() addProduct = new EventEmitter<Product>();
+
   @Output() goToProductsFrom = new EventEmitter<any>();
 
   addProductForm = new FormGroup({
@@ -27,24 +31,23 @@ export class AddProductComponent {
     let formCont: string = 'prodDesc';
     if ((this.isInvalidField(formCont) === true) &&
       (this.addProductForm.get(formCont)?.hasError(attr))) {
-        return true;
+      return true;
     }
     return false;
   };
 
   isInvalidField(attr: string) {
     let field: any = this.addProductForm.get(attr);
-    if (field !== null) {
-      if ((field.invalid) && ((field.dirty) || (field.touched))) {
-        return true;
-      }
+    if ((field?.invalid) && ((field?.dirty) || (field?.touched))) {
+      return true;
     }
     return false;
   };
 
   submitForm() {
-    debugger;
-    console.log(this.addProductForm.value);
-    // this.addProductForm.
+    let form = this.addProductForm.value;
+    let item: Product = new Product(form.prodName!, form.prodDesc!, form.prodBrand!, Number(form.prodPrice!));
+    this.addProduct.emit(item);
+    this.addProductForm.reset();
   };
 }

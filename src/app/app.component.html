@@ -1,8 +1,10 @@
 <div class="container">
   <products-list *ngIf="current_page === 0;" [items]="products" [toShowGoToCart]="shoppingList.length > 0"
-    (addToCart)="shoppingList.push($event);" (goToCart)="current_page=1;" (addProduct)="current_page=2;"></products-list>
+    (addToCart)="shoppingList.push($event);" (goToCart)="current_page=1;"
+    (addProduct)="current_page=2;"></products-list>
 
   <cart-page *ngIf="current_page === 1;" [items]="shoppingList" (goToProducts)="current_page=0"></cart-page>
 
-  <add-product *ngIf="current_page === 2;" (goToProductsFrom)="current_page=0"></add-product>
+  <add-product *ngIf="current_page === 2;" (goToProductsFrom)="current_page=0"
+    (addProduct)="products.push($event)"></add-product>
 </div>
