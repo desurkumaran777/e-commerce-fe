@@ -15,6 +15,8 @@ export class ProductsListComponent {
 
   @Input() toShowGoToCart: boolean = false;
 
+  @Output() addProduct = new EventEmitter<any>();
+
   @Output() addToCart = new EventEmitter<Product>();
 
   @Output() goToCart = new EventEmitter<any>();
@@ -26,6 +28,10 @@ export class ProductsListComponent {
 
   goToCartPage() {
     this.goToCart.emit();
+  };
+
+  goToAddProduct() {
+    this.addProduct.emit();
   };
 
 }

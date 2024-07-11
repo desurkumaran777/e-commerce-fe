@@ -21,6 +21,10 @@
                                     <input type="number" class="form-control" [(ngModel)]="item.order_qty"
                                         (ngModelChange)="updateTotal();" min="1">
                                 </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-danger" (click)="removeFromCart(item);">Remove
+                                        From Cart</button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -35,4 +39,11 @@
             </div>
         </div>
     </ng-template>
+
+    <div class="position-absolute end-0 top-0">
+        <button *ngIf="items.length > 0;" type="button" class="m-2 btn btn-secondary" (click)="goToProductsPage()">Shop
+            More</button>
+        <button *ngIf="items.length == 0;" type="button" class="m-2 btn btn-secondary" (click)="goToProductsPage()">Shop
+            Items</button>
+    </div>
 </div>

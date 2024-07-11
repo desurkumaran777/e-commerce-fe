@@ -4,11 +4,12 @@ import { Product } from '../shared/models/product';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { CommonModule } from '@angular/common';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ProductsListComponent, CartPageComponent],
+  imports: [RouterOutlet, CommonModule, ProductsListComponent, CartPageComponent, AddProductComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
