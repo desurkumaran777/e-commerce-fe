@@ -1,6 +1,8 @@
 <div>
-    <div *ngIf="items.length === 0; else showList">
-        There is no products to show.
+    <div *ngIf="items?.length === 0; else showList">
+        <div class="alert alert-info mt-2" role="alert">
+            There is no products to show.
+        </div>
     </div>
 
     <ng-template #showList>
@@ -18,8 +20,8 @@
                             <div class="row">
                                 <div class="col-md-2">Qty: </div>
                                 <div class="col-md-3">
-                                    <input type="number" class="form-control" [(ngModel)]="item.order_qty"
-                                        (ngModelChange)="updateTotal();" min="1">
+                                    <input type="number" class="form-control" [(ngModel)]="item.orderQty"
+                                        (ngModelChange)="updateTotal(item);" min="1">
                                 </div>
                                 <div class="col-md-3">
                                     <button type="button" class="btn btn-danger" (click)="removeFromCart(item);">Remove

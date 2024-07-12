@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../shared/models/product';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'products-list',
@@ -11,6 +12,9 @@ import { Product } from '../../shared/models/product';
   styleUrl: './products-list.component.css'
 })
 export class ProductsListComponent {
+
+  constructor(private prodService: ProductsService) {};
+
   @Input() items: Product[] = [];
 
   @Input() toShowGoToCart: boolean = false;
@@ -23,7 +27,10 @@ export class ProductsListComponent {
 
   addToShoppingCart(prod: Product) {
     prod.isAddedToCart = true;
-    this.addToCart.emit(prod);
+    this.prodService.addCart(prod).subscribe((data: any) => {
+      this.addToCart.emit(data);
+    });
+    this.prodService.updateProduct(prod).subscribe((data: any) => {});
   };
 
   goToCartPage() {

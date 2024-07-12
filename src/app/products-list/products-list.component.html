@@ -1,6 +1,8 @@
 <div>
-    <div *ngIf="items.length === 0; else showProducts;">
-        There is no products to show.
+    <div *ngIf="items?.length === 0; else showProducts;">
+        <div class="alert alert-info mt-2" role="alert">
+            There is no products to show.
+        </div>
     </div>
 
     <ng-template #showProducts>
@@ -13,7 +15,6 @@
                         <p class="card-text text-truncate">{{prod.prodDesc}}</p>
                         <p class="card-text">₹ {{prod.prodPrice}}</p>
                         <div class="row justify-content-end">
-                            <!-- <input type="number" class="w-40 mx-2 form-control" [(ngModel)]="prod.order_qty" min="1"> -->
                             <button *ngIf="!prod.isAddedToCart;" type="button" class="w-50 me-2 btn btn-primary"
                                 (click)="addToShoppingCart(prod)">Add to
                                 Cart</button>

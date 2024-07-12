@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../../shared/models/product';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'add-product',
@@ -11,6 +12,8 @@ import { Product } from '../../shared/models/product';
   styleUrl: './add-product.component.css'
 })
 export class AddProductComponent {
+
+  constructor(private prodService: ProductsService) {};
 
   @Output() addProduct = new EventEmitter<Product>();
 
@@ -46,8 +49,10 @@ export class AddProductComponent {
 
   submitForm() {
     let form = this.addProductForm.value;
-    let item: Product = new Product(form.prodName!, form.prodDesc!, form.prodBrand!, Number(form.prodPrice!));
-    this.addProduct.emit(item);
-    this.addProductForm.reset();
+    let item: Product = new Product(1, form.prodName!, form.prodDesc!, form.prodBrand!, Number(form.prodPrice!));
+    this.prodService.addProduct(item).subscribe((data: any) => {
+      this.addProduct.emit(data);
+      this.addProductForm.reset();
+    })
   };
 }
