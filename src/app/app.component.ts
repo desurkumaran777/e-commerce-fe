@@ -51,4 +51,9 @@ export class AppComponent implements OnInit {
 
   current_page: number = 0;
 
+  removeFromProducts(prodId: number) {
+    let ind = this.products.findIndex(x => x.prodId === prodId);
+    this.products[ind].isAddedToCart = false;
+  };
+
 }

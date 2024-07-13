@@ -3,7 +3,8 @@
     (addToCart)="shoppingList.push($event);" (goToCart)="current_page=1;"
     (addProduct)="current_page=2;"></products-list>
 
-  <cart-page *ngIf="current_page === 1;" [items]="shoppingList" (goToProducts)="current_page=0"></cart-page>
+  <cart-page *ngIf="current_page === 1;" [items]="shoppingList" (goToProducts)="current_page=0"
+    (removeProduct)="removeFromProducts($event);"></cart-page>
 
   <add-product *ngIf="current_page === 2;" (goToProductsFrom)="current_page=0"
     (addProduct)="products.push($event)"></add-product>

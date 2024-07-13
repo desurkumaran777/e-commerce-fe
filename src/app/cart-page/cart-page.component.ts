@@ -23,6 +23,8 @@ export class CartPageComponent implements OnInit{
 
   @Output() goToProducts = new EventEmitter<any>();
 
+  @Output() removeProduct = new EventEmitter<number>();
+
   totalCount: number = 0;
 
   totalPrice: number = 0;
@@ -39,6 +41,7 @@ export class CartPageComponent implements OnInit{
     let ind = this.items.findIndex(e=> e === item);
     this.items.splice(ind, 1);
     this.updateTotal();
+    this.removeProduct.emit(item.prodId);
   };
   
   updateTotal(item?: Product) {
