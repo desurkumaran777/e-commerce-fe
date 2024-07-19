@@ -16,21 +16,24 @@ export class CartPageComponent implements OnInit{
   constructor(private prodService: ProductsService) {};
 
   ngOnInit() {
-    this.updateTotal();
+    this.prodService.currentCartItems.subscribe((products: Product[]) => {
+      this.items = products;
+      this.updateTotal();
+    });
   }
 
-  @Input() items: Product[] = [];
+  items: Product[] = [];
 
-  @Output() goToProducts = new EventEmitter<any>();
+  // @Output() goToProducts = new EventEmitter<any>();
 
-  @Output() removeProduct = new EventEmitter<number>();
+  // @Output() updateProduct = new EventEmitter<number>();
 
   totalCount: number = 0;
 
   totalPrice: number = 0;
 
   goToProductsPage() {
-    this.goToProducts.emit();
+    // this.goToProducts.emit();
   };
 
   removeFromCart(item: Product) {
@@ -38,10 +41,13 @@ export class CartPageComponent implements OnInit{
     item.isAddedToCart = false;
     this.prodService.updateProduct(item).subscribe((data: any) => {});
     this.prodService.deleteCart(item).subscribe((data: any) => {});
-    let ind = this.items.findIndex(e=> e === item);
-    this.items.splice(ind, 1);
+    this.prodService.removeFromCart(item.prodId);
+    // let ind = this.items.findIndex(e=> e === item);
+    // this.items.splice(ind, 1);
     this.updateTotal();
-    this.removeProduct.emit(item.prodId);
+    this.prodService.updateSingleProduct(item);
+
+    // this.updateProduct.emit(item.prodId);
   };
   
   updateTotal(item?: Product) {

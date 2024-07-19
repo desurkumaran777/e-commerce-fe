@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { Product } from '../shared/models/product';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { CommonModule } from '@angular/common';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProductsService } from './products.service';
+import { HeaderPageComponent } from './header-page/header-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ProductsListComponent, CartPageComponent, AddProductComponent],
+  imports: [RouterOutlet, CommonModule, ProductsListComponent, CartPageComponent, AddProductComponent, 
+    HeaderPageComponent, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -20,11 +22,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.prodService.getProducts().subscribe((data:any) => {
-      this.products = data?.Products;
+      this.prodService.updateSourceProducts(data?.Products);
     })
 
     this.prodService.getCarts().subscribe((data:any) => {
-      this.shoppingList = data?.Carts;
+      this.prodService.updateCartItems(data?.Carts);
+      // this.shoppingList = data?.Carts;
     })
   }
 
@@ -51,7 +54,7 @@ export class AppComponent implements OnInit {
 
   current_page: number = 0;
 
-  removeFromProducts(prodId: number) {
+  updateInProduct(prodId: number) {
     let ind = this.products.findIndex(x => x.prodId === prodId);
     this.products[ind].isAddedToCart = false;
   };

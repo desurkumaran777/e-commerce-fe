@@ -15,9 +15,9 @@ export class AddProductComponent {
 
   constructor(private prodService: ProductsService) {};
 
-  @Output() addProduct = new EventEmitter<Product>();
+  // @Output() addProduct = new EventEmitter<Product>();
 
-  @Output() goToProductsFrom = new EventEmitter<any>();
+  // @Output() goToProductsFrom = new EventEmitter<any>();
 
   addProductForm = new FormGroup({
     prodName: new FormControl('', Validators.required),
@@ -27,7 +27,7 @@ export class AddProductComponent {
   });
 
   goToProductsPage() {
-    this.goToProductsFrom.emit();
+    // this.goToProductsFrom.emit();
   };
 
   hasError(attr: string) {
@@ -51,7 +51,8 @@ export class AddProductComponent {
     let form = this.addProductForm.value;
     let item: Product = new Product(1, form.prodName!, form.prodDesc!, form.prodBrand!, Number(form.prodPrice!));
     this.prodService.addProduct(item).subscribe((data: any) => {
-      this.addProduct.emit(data);
+      // this.addProduct.emit(data);
+      this.prodService.addToSourceProducts(data);
       this.addProductForm.reset();
     })
   };

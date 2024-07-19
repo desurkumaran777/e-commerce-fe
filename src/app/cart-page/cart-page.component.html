@@ -1,7 +1,7 @@
 <div>
     <div *ngIf="items?.length === 0; else showList">
         <div class="alert alert-info mt-2" role="alert">
-            There is no products to show.
+            There is no products in the cart to show.
         </div>
     </div>
 
@@ -42,10 +42,10 @@
         </div>
     </ng-template>
 
-    <div class="position-absolute end-0 top-0">
+    <!-- <div class="position-absolute end-0 top-0">
         <button *ngIf="items.length > 0;" type="button" class="m-2 btn btn-secondary" (click)="goToProductsPage()">Shop
             More</button>
         <button *ngIf="items.length == 0;" type="button" class="m-2 btn btn-secondary" (click)="goToProductsPage()">Shop
             Items</button>
-    </div>
+    </div> -->
 </div>
