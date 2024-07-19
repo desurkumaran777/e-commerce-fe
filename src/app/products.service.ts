@@ -84,10 +84,15 @@ export class ProductsService {
     this.cartItemsSource.next(newCartItems);
   };
 
-  removeFromCart(itemId: Number) {
+  removeFromCart(itemId: number) {
     const curCartItems: Product[] = this.cartItemsSource.value;
-    const updatedItems: Product[] = curCartItems.filter(item => item.prodId != itemId);
+    const updatedItems: Product[] = curCartItems.filter(item => item.prodId !== itemId);
     this.cartItemsSource.next(updatedItems);
+  };
+
+  getProductById(prodId: number) {
+    const curProducts: Product[] = this.productsSource.value;
+    return curProducts.find(prod => prod.prodId === prodId);
   };
 
 }

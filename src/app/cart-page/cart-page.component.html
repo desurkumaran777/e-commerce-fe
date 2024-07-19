@@ -7,45 +7,53 @@
 
     <ng-template #showList>
         <div class="row">
-            <div class="d-flex justify-content-end">
-                <div class="col-md-2">Price</div>
-            </div>
-            <div class="my-2" *ngFor="let item of items">
-                <div class="card">
-                    <div class="card-body row">
-                        <div class="col-md-10">
-                            <h5 class="card-title">{{item.prodName}}</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">{{item.prodBrand}}</h6>
-                            <p class="card-text text-truncate">{{item.prodDesc}}</p>
-                            <div class="row">
-                                <div class="col-md-2">Qty: </div>
-                                <div class="col-md-3">
-                                    <input type="number" class="form-control" [(ngModel)]="item.orderQty"
-                                        (ngModelChange)="updateTotal(item);" min="1">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="d-flex justify-content-end">
+                        <div class="col-md-2">Price</div>
+                    </div>
+                    <div class="my-2" *ngFor="let item of items">
+                        <div class="card">
+                            <div class="card-body row">
+                                <div class="col-md-10">
+                                    <h5 class="card-title">{{item.prodName}}</h5>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">{{item.prodBrand}}</h6>
+                                    <p class="card-text text-truncate">{{item.prodDesc}}</p>
+                                    <div class="row">
+                                        <div class="col-md-2">Qty: </div>
+                                        <div class="col-md-3">
+                                            <input type="number" class="form-control" [(ngModel)]="item.orderQty"
+                                                (ngModelChange)="updateTotal(item);" min="1">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="button" class="btn btn-danger"
+                                                (click)="removeFromCart(item);">Remove From Cart</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-danger" (click)="removeFromCart(item);">Remove
-                                        From Cart</button>
+                                <div class="col-md-2">
+                                    <p class="card-text">₹ {{item.prodPrice}}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <p class="card-text">₹ {{item.prodPrice}}</p>
-                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">Total Itmes: {{totalCount}}</div>
+                        <div class="col-md-2">Total Price: ₹ {{totalPrice}}</div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-10">Total Itmes: {{totalCount}}</div>
-                <div class="col-md-2">Total Price: ₹ {{totalPrice}}</div>
+            <div class="col-md-3 mt-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div>Total Itmes: {{totalCount}}</div>
+                        <div>Total Price: ₹ {{totalPrice}}</div>
+                        <button type="button" class="mt-3 me-2 btn btn-success"
+                            (click)="$event.preventDefault();">Proceed to Checkout</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </ng-template>
 
-    <!-- <div class="position-absolute end-0 top-0">
-        <button *ngIf="items.length > 0;" type="button" class="m-2 btn btn-secondary" (click)="goToProductsPage()">Shop
-            More</button>
-        <button *ngIf="items.length == 0;" type="button" class="m-2 btn btn-secondary" (click)="goToProductsPage()">Shop
-            Items</button>
-    </div> -->
+    </ng-template>
 </div>

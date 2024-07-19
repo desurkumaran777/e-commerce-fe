@@ -1,38 +1,8 @@
 <div class="bg-secondary bg-gradient text-white m-0 mw-100 min-vh-100">
   <div class="position-fixed z-1 w-100">
     <header-page></header-page>
-
-    <!-- <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">ECommerce</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" [routerLink]="['/add-product']">Add Product</a>
-            <a class="nav-link active" aria-current="page" [routerLink]="['']">All Products</a>
-          </div>
-          <div class="navbar-nav ms-auto">
-            <a class="nav-link" [routerLink]="['go-to-cart']">Go To Cart</a>
-          </div>
-        </div>
-      </div>
-    </nav> -->
   </div>
   <div class="pt-3-8 p-3">
     <router-outlet></router-outlet>
-    <!-- 
-    <products-list *ngIf="current_page === 0;" [items]="products" [toShowGoToCart]="shoppingList.length > 0"
-      (addToCart)="shoppingList.push($event);" (goToCart)="current_page=1;"
-      (addProduct)="current_page=2;"></products-list>
-
-    <cart-page *ngIf="current_page === 1;" [items]="shoppingList" (goToProducts)="current_page=0"
-      (updateProduct)="updateInProduct($event);"></cart-page>
-
-    <add-product *ngIf="current_page === 2;" (goToProductsFrom)="current_page=0"
-      (addProduct)="products.push($event)"></add-product>
-       -->
   </div>
 </div>

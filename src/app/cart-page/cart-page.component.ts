@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../../shared/models/product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,17 +24,9 @@ export class CartPageComponent implements OnInit{
 
   items: Product[] = [];
 
-  // @Output() goToProducts = new EventEmitter<any>();
-
-  // @Output() updateProduct = new EventEmitter<number>();
-
   totalCount: number = 0;
 
   totalPrice: number = 0;
-
-  goToProductsPage() {
-    // this.goToProducts.emit();
-  };
 
   removeFromCart(item: Product) {
     item.orderQty = 1;
@@ -42,12 +34,8 @@ export class CartPageComponent implements OnInit{
     this.prodService.updateProduct(item).subscribe((data: any) => {});
     this.prodService.deleteCart(item).subscribe((data: any) => {});
     this.prodService.removeFromCart(item.prodId);
-    // let ind = this.items.findIndex(e=> e === item);
-    // this.items.splice(ind, 1);
     this.updateTotal();
     this.prodService.updateSingleProduct(item);
-
-    // this.updateProduct.emit(item.prodId);
   };
   
   updateTotal(item?: Product) {

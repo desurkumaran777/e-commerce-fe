@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../shared/models/product';
 import { ProductsService } from '../products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'products-list',
@@ -13,7 +14,7 @@ import { ProductsService } from '../products.service';
 })
 export class ProductsListComponent implements OnInit {
 
-  constructor(private prodService: ProductsService) {};
+  constructor(private prodService: ProductsService, private router: Router) {};
 
   ngOnInit(): void {
     this.prodService.currentProducts.subscribe((products: Product[]) => {
@@ -21,33 +22,17 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
-
   items: Product[] = [];
-
-  @Input() toShowGoToCart: boolean = false;
-
-  // @Output() addProduct = new EventEmitter<any>();
-
-  // @Output() addToCart = new EventEmitter<Product>();
-
-  // @Output() goToCart = new EventEmitter<any>();
 
   addToShoppingCart(prod: Product) {
     prod.isAddedToCart = true;
-    this.prodService.addCart(prod).subscribe((data: any) => {
-      // this.addToCart.emit(data);
-      // this.prodService.addToCartItem(data);
-    });
+    this.prodService.addCart(prod).subscribe((data: any) => {});
     this.prodService.addToCartItem(prod);
     this.prodService.updateProduct(prod).subscribe((data: any) => {});
   };
 
-  goToCartPage() {
-    // this.goToCart.emit();
-  };
-
-  goToAddProduct() {
-    // this.addProduct.emit();
+  seeProductDesc(prod: Product) {
+    this.router.navigate(['product', prod.prodId.toString()])
   };
 
 }
