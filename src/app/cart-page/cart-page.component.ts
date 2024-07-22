@@ -20,7 +20,9 @@ export class CartPageComponent implements OnInit{
       this.items = products;
       this.updateTotal();
     });
-  }
+  };
+
+  imageFilePath:string = 'http://localhost:5000//image/';
 
   items: Product[] = [];
 

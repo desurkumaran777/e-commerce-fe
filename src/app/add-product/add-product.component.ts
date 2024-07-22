@@ -41,10 +41,12 @@ export class AddProductComponent {
 
   submitForm() {
     let form = this.addProductForm.value;
-    let item: Product = new Product(1, form.prodName!, form.prodDesc!, form.prodBrand!, Number(form.prodPrice!));
-    this.prodService.addProduct(item).subscribe((data: any) => {
-      this.prodService.addToSourceProducts(data);
-      this.addProductForm.reset();
-    })
+    console.log(form);
+    return;
+    // let item: Product = new Product(1, form.prodName!, form.prodDesc!, form.prodBrand!, Number(form.prodPrice!));
+    // this.prodService.addProduct(item).subscribe((data: any) => {
+    //   this.prodService.addToSourceProducts(data);
+    //   this.addProductForm.reset();
+    // })
   };
 }

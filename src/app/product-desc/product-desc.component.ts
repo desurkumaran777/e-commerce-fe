@@ -23,6 +23,8 @@ export class ProductDescComponent implements OnInit {
   };
 
   isAddingToCart: boolean = false;
+  
+  imageFilePath:string = 'http://localhost:5000//image/';
 
   prodId!: number;
 

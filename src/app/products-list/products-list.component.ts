@@ -22,6 +22,8 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
+  imageFilePath:string = 'http://localhost:5000//image/';
+
   items: Product[] = [];
 
   addToShoppingCart(prod: Product) {

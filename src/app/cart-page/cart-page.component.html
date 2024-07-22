@@ -16,18 +16,27 @@
                         <div class="card">
                             <div class="card-body row">
                                 <div class="col-md-10">
-                                    <h5 class="card-title">{{item.prodName}}</h5>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary">{{item.prodBrand}}</h6>
-                                    <p class="card-text text-truncate">{{item.prodDesc}}</p>
                                     <div class="row">
-                                        <div class="col-md-2">Qty: </div>
-                                        <div class="col-md-3">
-                                            <input type="number" class="form-control" [(ngModel)]="item.orderQty"
-                                                (ngModelChange)="updateTotal(item);" min="1">
+                                        <div class="col-md-4">
+                                            <img [src]="imageFilePath + item.prodImg" class="img-thumbnail"
+                                                alt="{{item.prodName}}">
                                         </div>
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-danger"
-                                                (click)="removeFromCart(item);">Remove From Cart</button>
+                                        <div class="col-md-8">
+                                            <h5 class="card-title">{{item.prodName}}</h5>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary">{{item.prodBrand}}</h6>
+                                            <p class="card-text text-truncate">{{item.prodDesc}}</p>
+                                            <div class="row">
+                                                <div class="col-md-2">Qty: </div>
+                                                <div class="col-md-3">
+                                                    <input type="number" class="form-control"
+                                                        [(ngModel)]="item.orderQty" (ngModelChange)="updateTotal(item);"
+                                                        min="1">
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <button type="button" class="btn btn-danger"
+                                                        (click)="removeFromCart(item);">Remove From Cart</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
