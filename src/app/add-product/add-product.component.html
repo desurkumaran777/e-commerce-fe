@@ -52,6 +52,16 @@
 
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label for="prodImg" class="col-sm-2 col-form-label">Product Image: </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" (change)="onImgSelect($event)" [ngClass]="isInvalidField('prodImg') ? 'is-invalid': ''" type="file"
+                            id="prodImg" formControlName="prodImg" aria-label="file example">
+                        <div *ngIf="isInvalidField('prodImg')" id="prodImgFeed" class="invalid-feedback">
+                            This is a required field.
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary" [disabled]="addProductForm.invalid">Add
                         Product</button>

@@ -8,7 +8,8 @@
 <div *ngIf="product !== undefined;" class="row">
     <div class="col-md-4">
         <div class="card min-h-28">
-            <img [src]="imageFilePath + product.prodImg" class="card-img-top img-fluid" alt="{{product.prodName}}">
+            <img [src]="imageFilePath + product.prodImg" class="card-img-top img-fluid p-1-rem"
+                alt="{{product.prodName}}">
             <div class="card-body">
                 <h5 class="card-title">{{product.prodName}}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">{{product.prodBrand}}</h6>

@@ -10,7 +10,7 @@
             <div class="w-auto my-2" *ngFor="let prod of items">
                 <div class="card" style="width: 18rem; height: 28rem;" role="button"
                     (click)="$event.preventDefault(); seeProductDesc(prod)">
-                    <img [src]="imageFilePath + prod.prodImg" class="card-img-top" alt="{{prod.prodName}}">
+                    <img [src]="imageFilePath + prod.prodImg" class="card-img-top m-h-18-rem p-1-rem" alt="{{prod.prodName}}">
                     <div class="card-body">
                         <h5 class="card-title">{{prod.prodName}}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{prod.prodBrand}}</h6>

@@ -26,7 +26,7 @@ export class ProductsService {
     return this.http.get(url);
   };
 
-  addProduct(prodItem: Product) {
+  addProduct(prodItem: FormData) {
     let url: string = this.rootAPIUrl + 'products';
     return this.http.post(url, prodItem);
   };
